@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
 const profileSchema = new mongoose.Schema({
-    fullName: String,
-    dob: Date,
-    nation: String,
+    fullName: { type: String, required: true },
+    dob: { type: Date, required: true },
+    nation: { type: String, required: true },
     education: [
         {
-            school: String,
-            yearStart: Number,
-            yearEnd: Number
+            school: { type: String, required: true },
+            yearStart: { type: Number, required: true },
+            yearEnd: { type: Number, required: true }
         }
     ],
-    id: String,
-    owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
-const ProfileModel = mongoose.model("profiles", profileSchema);
+
+const ProfileModel = mongoose.model("profile", profileSchema);
 export default ProfileModel;
